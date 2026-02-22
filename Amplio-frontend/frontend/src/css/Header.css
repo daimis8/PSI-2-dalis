@@ -1,0 +1,45 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #0b0754;
+    color: white;
+}
+
+.app-logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.app-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.tab {
+    text-decoration: none;
+    color: #bbb;
+    font-weight: 600;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab.active {
+    color: white;
+    border-bottom: 2px solid #ff6ec7;
+}
+
+.tab:hover {
+    color: white;
+}
+
+.signout-tab {
+    color: #ff6b6b;
+}
+
+.signout-tab:hover {
+    color: #ff8787;
+}

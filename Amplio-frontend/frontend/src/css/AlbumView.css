@@ -1,0 +1,12 @@
+.album-details
+{
+    background-color: #7a1275; 
+    color: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 8px rgba(235, 4, 4, 4.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: 700;
+    font-size: 1.1rem;
+}

@@ -1,0 +1,19 @@
+.my-playlists-content {
+    justify-content: center;
+    display: flex;
+    
+}
+
+.center-side {
+    width: 60%;
+}
+
+.your-playlists-header{
+    text-align: center;
+    font-size: 40px;
+}
+
+.queue-song-item{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -1,0 +1,9 @@
+.content-leaderboard-page{
+    justify-content: center;
+    display: flex;
+}
+
+
+.center-side {
+    width: 60%;
+}

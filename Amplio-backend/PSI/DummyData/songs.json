@@ -1,0 +1,108 @@
+[
+  {
+    "Title": "Blinding Lights",
+    "Artist": "The Weeknd",
+    "Genres": [ "Pop" ],
+    "Link": "https://www.youtube.com/watch?v=fHI8X4OXluQ",
+    "Album": {
+      "Name": "After Hours",
+      "Artist": "The Weeknd",
+      "ReleaseYear": 2020
+    }
+  },
+  {
+    "Title": "In Your Eyes",
+    "Artist": "The Weeknd",
+    "Genres": [ "Pop" ],
+    "Link": "https://youtu.be/E3QiD99jPAg?si=ur0xogPzXCuBGIFY",
+    "Album": {
+      "Name": "After Hours",
+      "Artist": "The Weeknd",
+      "ReleaseYear": 2020
+    }
+  },
+  {
+    "Title": "Starboy",
+    "Artist": "The Weeknd",
+    "Genres": [ "Pop" ],
+    "Link": "https://youtu.be/Rif-RTvmmss?si=r49Vp4PzoURl6drh",
+    "Album": {
+      "Name": "Starboy",
+      "Artist": "The Weeknd",
+      "ReleaseYear": 2016
+    }
+  },
+  {
+    "Title": "Born to Die",
+    "Artist": "Lana Del Rey",
+    "Genres": [ "Pop", "Indie" ],
+    "Link": "https://www.youtube.com/watch?v=Bag1gUxuU0g",
+    "Album": {
+      "Name": "Born to Die",
+      "Artist": "Lana Del Rey",
+      "ReleaseYear": 2012
+    }
+  },
+  {
+    "Title": "Young and Beautiful",
+    "Artist": "Lana Del Rey",
+    "Genres": [ "Pop" ],
+    "Link": "https://www.youtube.com/watch?v=o_1aF54DO60",
+    "Album": {
+      "Name": "Born to Die",
+      "Artist": "Lana Del Rey",
+      "ReleaseYear": 2012
+    }
+  },
+  {
+    "Title": "Elephant",
+    "Artist": "Tame Impala",
+    "Genres": [ "Rock" ],
+    "Link": "https://youtu.be/z7q9W2PNhJ4?si=ymiAgf3ylVI_I406",
+    "Album": {
+      "Name": "Lonerism",
+      "Artist": "Tame Impala",
+      "ReleaseYear": 2012
+    }
+  },
+  {
+    "Title": "Let It Happen",
+    "Artist": "Tame Impala",
+    "Genres": [ "Indie" ],
+    "Link": "https://youtu.be/odeHP8N4LKc?si=BkAjlTxYejstqQaK",
+    "Album": {
+      "Name": "Currents",
+      "Artist": "Tame Impala",
+      "ReleaseYear": 2015
+    }
+  },
+  {
+    "Title": "Team",
+    "Artist": "Lorde",
+    "Genres": [ "Pop", "Alternative" ],
+    "Link": "https://youtu.be/EVEVWlhiClo?si=qm0m4U-dPWXOdKZV",
+    "Album": {
+      "Name": "Pure Heroine",
+      "Artist": "Lorde",
+      "ReleaseYear": 2013
+    }
+  },
+  {
+    "Title": "Shapeshifter",
+    "Artist": "Lorde",
+    "Genres": [ "Pop", "Alternative" ],
+    "Link": "https://youtu.be/0-W6AQ0J1Zc?si=dN8hhICZ0xyvKNf7",
+    "Album": {
+      "Name": "Melodrama",
+      "Artist": "Lorde",
+      "ReleaseYear": 2017
+    }
+  },
+  {
+    "Title": "Ribs",
+    "Artist": "Lorde",
+    "Genres": [ "Pop" ],
+    "Link": "https://youtu.be/b7pE8AG1jjE?si=n7E6F1ZWxS4jrc7k",
+    "Album": null
+  }
+]
