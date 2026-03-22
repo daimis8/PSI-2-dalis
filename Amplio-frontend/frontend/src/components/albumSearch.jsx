@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "../css/SongSearch.css";
 import { getAllAlbums } from "../services/albumAPI";
-import AlbumView from "./AlbumView";
-import "../css/AlbumSearch.css"
+import AlbumView from "./albumView";
+import "../css/AlbumSearch.css";
 
 function AlbumSearch({ onAdd, playlist }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,15 +21,16 @@ function AlbumSearch({ onAdd, playlist }) {
     fetchAlbums();
   }, []);
 
-  const filteredAlbums = albums.filter((album) =>
-    album.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    album.artist.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredAlbums = albums.filter(
+    (album) =>
+      album.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      album.artist.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+  //
   if (selectedAlbum) {
     return (
-      <AlbumView 
-        album={selectedAlbum} 
+      <AlbumView
+        album={selectedAlbum}
         onAdd={onAdd}
         playlist={playlist}
         onBack={() => setSelectedAlbum(null)}
@@ -52,17 +53,17 @@ function AlbumSearch({ onAdd, playlist }) {
       <br />
       <ul className="album-list">
         {filteredAlbums.map((album) => (
-          <li 
-            key={album.id} 
+          <li
+            key={album.id}
             className="album-item"
             onClick={() => setSelectedAlbum(album)}
           >
-              <div className="album-info">
-                <p className="album-title">{album.name}</p>
-                <p className="album-artist">{album.artist}</p>
-                <p className="album-year">{album.releaseYear}</p>
-              </div>
-              <button className="view-album-button">View Songs →</button>
+            <div className="album-info">
+              <p className="album-title">{album.name}</p>
+              <p className="album-artist">{album.artist}</p>
+              <p className="album-year">{album.releaseYear}</p>
+            </div>
+            <button className="view-album-button">View Songs →</button>
           </li>
         ))}
       </ul>
