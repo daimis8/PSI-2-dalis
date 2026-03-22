@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/SongSearch.css";
 import { getAllAlbums } from "../services/albumAPI";
-import AlbumView from "./AlbumView";
+import AlbumView from "./albumView";
 import "../css/AlbumSearch.css"
 
 function AlbumSearch({ onAdd, playlist }) {
