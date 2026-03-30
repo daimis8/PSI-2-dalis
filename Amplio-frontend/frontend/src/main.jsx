@@ -1,26 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Home from './pages/Home';
-import CreatePlaylist from './pages/CreatePlaylist';
-import EnterPlaylistCode from './pages/EnterPlaylistCode';
-import Playlist from './pages/Playlist';
-import MyPlaylists from './pages/MyPlaylists';
-import Leaderboard from './pages/Leaderboard';
-import ProtectedRoute from './components/ProtectedRoute';
-import { isAuthenticated } from './services/authAPI';
-import './css/index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import CreatePlaylist from "./pages/CreatePlaylist";
+import EnterPlaylistCode from "./pages/EnterPlaylistCode";
+import Playlist from "./pages/Playlist";
+import MyPlaylists from "./pages/MyPlaylists";
+import Leaderboard from "./pages/Leaderboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { isAuthenticated } from "./services/authAPI";
+import "./css/index.css";
+// test ci
+//test ci
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         {/* Redirect root to login or home */}
-        <Route 
-          path="/" 
-          element={isAuthenticated() ? <Navigate to="/home/playlists" replace /> : <Navigate to="/login" replace />} 
+        <Route
+          path="/"
+          element={
+            isAuthenticated() ? (
+              <Navigate to="/home/playlists" replace />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
         />
 
         {/* Public routes */}
@@ -28,8 +36,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/register" element={<Register />} />
 
         {/* Protected layout with nested routes */}
-        <Route 
-          path="/home" 
+        <Route
+          path="/home"
           element={
             <ProtectedRoute>
               <Home />
@@ -44,15 +52,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Route>
 
         {/* Playlist view - separate from home tabs */}
-        <Route 
-          path="/playlist/:playlistId" 
+        <Route
+          path="/playlist/:playlistId"
           element={
             <ProtectedRoute>
               <Playlist />
             </ProtectedRoute>
-          } 
+          }
         />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
