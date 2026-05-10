@@ -56,5 +56,22 @@ namespace PSI.Repositories
             playlists.ForEach(p => p.CurrentSongId = null);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Playlist>> GetInvitedPlaylistsAsync(Guid userId) =>
+            await _context.PlaylistInvitations
+                .AsNoTracking()
+                .Where(pi => pi.InviteeId == userId)
+                .Select(pi => pi.Playlist!)
+                .ToListAsync();
+
+        public Task<bool> InvitationExistsAsync(Guid playlistId, Guid inviteeId) =>
+            _context.PlaylistInvitations.AnyAsync(pi =>
+                pi.PlaylistId == playlistId && pi.InviteeId == inviteeId);
+
+        public async Task AddInvitationAsync(PlaylistInvitation invitation)
+        {
+            _context.PlaylistInvitations.Add(invitation);
+            await _context.SaveChangesAsync();
+        }
     }
 }

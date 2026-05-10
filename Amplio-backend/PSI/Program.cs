@@ -53,6 +53,7 @@ builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
 builder.Services.AddScoped<ISongRepository, SongRepository>();
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<IPlaylistSongRepository, PlaylistSongRepository>();
+builder.Services.AddScoped<IFriendRepository, FriendRepository>();
 
 
 builder.Services.AddScoped<ISongService, SongService>();
@@ -60,6 +61,7 @@ builder.Services.AddScoped<IConcurrentVotingService, ConcurrentVotingService>();
 builder.Services.AddScoped<IPlaylistService, PlaylistService>();
 builder.Services.AddScoped<IAlbumService, AlbumService>();
 builder.Services.AddScoped<ILeaderboardService, LeaderboardService>();
+builder.Services.AddScoped<IFriendService, FriendService>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddHttpClient();

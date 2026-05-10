@@ -18,10 +18,19 @@ namespace Tests.Integration
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
+            var userId = Request.Headers.TryGetValue("X-Test-User-Id", out var headerValue) &&
+                         Guid.TryParse(headerValue.ToString(), out var parsed)
+                ? parsed
+                : Guid.NewGuid();
+
+            var name = Request.Headers.TryGetValue("X-Test-Username", out var nameHeader)
+                ? nameHeader.ToString()
+                : "TestUser";
+
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Name, "TestUser")
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                new Claim(ClaimTypes.Name, name)
             };
 
             var identity = new ClaimsIdentity(claims, "TestScheme");
