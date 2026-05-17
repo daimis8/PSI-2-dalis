@@ -14,6 +14,7 @@ import {
 } from "../services/playlistAPI";
 import "../css/Playlist.css"
 import { getSongLink } from "../services/songAPI";
+import { listFriends, inviteFriendToPlaylist } from "../services/friendsAPI";
 
 function Playlist()
 {
@@ -27,10 +28,28 @@ function Playlist()
     const [copied, setCopied] = useState(false);
     const playerRef = useRef(null);
     const [isPlayerReady, setIsPlayerReady] = useState(false);
+    const [friends, setFriends] = useState([]);
+    const [inviteStatus, setInviteStatus] = useState("");
     const isSettingCurrentSong = useRef(false);
     const hasInitiallyFetched = useRef(false);
     const lastKnownCurrentSong = useRef(null);
     const hasRegisteredVisit = useRef(false);
+
+    useEffect(() => {
+        listFriends()
+            .then(setFriends)
+            .catch(() => setFriends([]));
+    }, []);
+
+    const handleInviteFriend = async (friendId) => {
+        setInviteStatus("");
+        try {
+            await inviteFriendToPlaylist(playlistId, friendId);
+            setInviteStatus("Invite sent");
+        } catch (err) {
+            setInviteStatus(err.message || "Failed to invite");
+        }
+    };
 
     useEffect(() => {
         async function recordVisit() {
@@ -302,6 +321,31 @@ useEffect(() => {
             {copied ? "✓" : "Copy"}
         </button>
     </div>
+
+    {friends.length > 0 && (
+        <div className="playlist-invite-box">
+            <span className="share-label">Invite a friend: </span>
+            <select
+                defaultValue=""
+                onChange={(e) => {
+                    if (e.target.value) {
+                        handleInviteFriend(e.target.value);
+                        e.target.value = "";
+                    }
+                }}
+            >
+                <option value="" disabled>
+                    Select a friend…
+                </option>
+                {friends.map((f) => (
+                    <option key={f.id} value={f.id}>
+                        {f.username}
+                    </option>
+                ))}
+            </select>
+            {inviteStatus && <span style={{ marginLeft: "0.5rem" }}>{inviteStatus}</span>}
+        </div>
+    )}
 </div>
 
 

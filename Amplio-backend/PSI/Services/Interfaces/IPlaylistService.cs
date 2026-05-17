@@ -15,5 +15,7 @@ namespace PSI.Services.Interfaces
         Task ClearCurrentSongAsync(Guid playlistId);
         Task<Playlist> GetPlaylistByIdAsync(Guid playlistId);
         Task<List<Playlist>> GetPlaylistsByOwnerAsync(Guid ownerId);
+        Task<List<Playlist>> GetPlaylistsForUserAsync(Guid userId);
+        Task InviteFriendAsync(Guid hostId, Guid playlistId, Guid friendId);
     }
 }

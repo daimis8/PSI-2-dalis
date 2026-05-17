@@ -11,17 +11,20 @@ namespace PSI.Services
         private readonly ISongRepository _songRepository;
         private readonly IAlbumRepository _albumRepository;
         private readonly IConcurrentVotingService _votingService;
+        private readonly IFriendService? _friendService;
 
         public PlaylistService(
             IPlaylistRepository playlistRepository,
             ISongRepository songRepository,
             IAlbumRepository albumRepository,
-            IConcurrentVotingService votingService)
+            IConcurrentVotingService votingService,
+            IFriendService? friendService = null)
         {
             _playlistRepository = playlistRepository;
             _songRepository = songRepository;
             _albumRepository = albumRepository;
             _votingService = votingService;
+            _friendService = friendService;
         }
 
         public async Task<Playlist> CreatePlaylistAsync(string name, bool isPublic, Guid? currentSongId, Guid ownerId)
@@ -157,6 +160,42 @@ namespace PSI.Services
             }
 
             return userPlaylists;
+        }
+
+        public async Task<List<Playlist>> GetPlaylistsForUserAsync(Guid userId)
+        {
+            var allPlaylists = await _playlistRepository.GetAllAsync();
+            var owned = allPlaylists.Where(p => p.OwnerId == userId);
+            var invited = await _playlistRepository.GetInvitedPlaylistsAsync(userId);
+
+            return owned
+                .Concat(invited)
+                .GroupBy(p => p.Id)
+                .Select(g => g.First())
+                .ToList();
+        }
+
+        public async Task InviteFriendAsync(Guid hostId, Guid playlistId, Guid friendId)
+        {
+            var playlist = await _playlistRepository.GetByIdAsync(playlistId)
+                ?? throw new KeyNotFoundException("Playlist not found");
+
+            if (playlist.OwnerId != hostId)
+                throw new PlaylistOperationException("Only the host can invite friends", playlistId);
+
+            if (_friendService is null || !await _friendService.AreFriendsAsync(hostId, friendId))
+                throw new NotFriendsException();
+
+            if (await _playlistRepository.InvitationExistsAsync(playlistId, friendId))
+                return;
+
+            await _playlistRepository.AddInvitationAsync(new PlaylistInvitation
+            {
+                PlaylistId = playlistId,
+                InviteeId = friendId,
+                InviterId = hostId,
+                CreatedAt = DateTime.UtcNow
+            });
         }
     }
 }

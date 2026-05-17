@@ -11,5 +11,9 @@ namespace PSI.Repositories.Interfaces
         Task<List<Playlist>> GetPublicPlaylistsAsync();
         Task<List<Playlist>> GetAllAsync();
         Task ClearCurrentSongForAllAsync();
+
+        Task<List<Playlist>> GetInvitedPlaylistsAsync(Guid userId);
+        Task<bool> InvitationExistsAsync(Guid playlistId, Guid inviteeId);
+        Task AddInvitationAsync(PlaylistInvitation invitation);
     }
 }

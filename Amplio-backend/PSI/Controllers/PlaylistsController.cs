@@ -170,21 +170,30 @@ namespace PSI.Controllers
         {
             var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
+            var playlists = await _playlistService.GetPlaylistsForUserAsync(userId);
+
+            return Ok(playlists.Select(p => new
+            {
+                p.Id,
+                p.Name,
+                p.IsPublic,
+                IsOwner = p.OwnerId == userId
+            }));
+        }
+
+        [HttpPost("{playlistId:guid}/invite/{friendId:guid}")]
+        public async Task<IActionResult> InviteFriend(Guid playlistId, Guid friendId)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
             try
             {
-                var playlists = await _playlistService.GetPlaylistsByOwnerAsync(userId);
-
-                return Ok(playlists.Select(p => new
-                {
-                    p.Id,
-                    p.Name,
-                    p.IsPublic
-                }));
+                await _playlistService.InviteFriendAsync(userId, playlistId, friendId);
+                return NoContent();
             }
-            catch (KeyNotFoundException)
-            {
-                return Ok(new List<object>()); 
-            }
+            catch (KeyNotFoundException ex) { return NotFound(new { message = ex.Message }); }
+            catch (NotFriendsException ex) { return BadRequest(new { message = ex.Message }); }
+            catch (PlaylistOperationException) { return StatusCode(403, new { message = "Only the playlist host can invite friends" }); }
         }
 
     }

@@ -39,7 +39,11 @@ function Header() {
         Join Playlist
         </NavLink>
 
-                <button 
+        <NavLink to="/home/friends" className={({isActive}) => isActive ? "tab active" : "tab"}>
+        Friends
+        </NavLink>
+
+                <button
                     className="tab signout-tab"
                     onClick={handleLogout}
                 >

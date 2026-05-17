@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(textutil -convert txt -stdout \"/Users/daimis/Programing/PSI/PSI 2 dalis/docs/PSI LAB 3 \\(2nd iteration\\) \\(4\\).docx\")",
+      "Read(//tmp/**)",
+      "Bash(dotnet ef *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet test *)",
+      "Bash(npm run *)"
+    ]
+  }
+}

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PSI.Data;
@@ -11,9 +12,11 @@ using PSI.Data;
 namespace PSI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260510123056_AddFriendSystem")]
+    partial class AddFriendSystem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,34 +160,6 @@ namespace PSI.Migrations
                     b.HasIndex("CurrentSongId");
 
                     b.ToTable("Playlists");
-                });
-
-            modelBuilder.Entity("PSI.Models.PlaylistInvitation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("InviteeId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("InviterId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PlaylistId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InviteeId");
-
-                    b.HasIndex("PlaylistId", "InviteeId")
-                        .IsUnique();
-
-                    b.ToTable("PlaylistInvitations");
                 });
 
             modelBuilder.Entity("PSI.Models.PlaylistSong", b =>
@@ -334,25 +309,6 @@ namespace PSI.Migrations
                         .HasForeignKey("CurrentSongId");
 
                     b.Navigation("CurrentSong");
-                });
-
-            modelBuilder.Entity("PSI.Models.PlaylistInvitation", b =>
-                {
-                    b.HasOne("PSI.Models.User", "Invitee")
-                        .WithMany()
-                        .HasForeignKey("InviteeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("PSI.Models.Playlist", "Playlist")
-                        .WithMany()
-                        .HasForeignKey("PlaylistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Invitee");
-
-                    b.Navigation("Playlist");
                 });
 
             modelBuilder.Entity("PSI.Models.PlaylistSong", b =>

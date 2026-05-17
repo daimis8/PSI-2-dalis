@@ -9,6 +9,7 @@ import EnterPlaylistCode from './pages/EnterPlaylistCode';
 import Playlist from './pages/Playlist';
 import MyPlaylists from './pages/MyPlaylists';
 import Leaderboard from './pages/Leaderboard';
+import Friends from './pages/Friends';
 import ProtectedRoute from './components/ProtectedRoute';
 import { isAuthenticated } from './services/authAPI';
 import './css/index.css';
@@ -41,6 +42,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="create" element={<CreatePlaylist />} />
           <Route path="join" element={<EnterPlaylistCode />} />
+          <Route path="friends" element={<Friends />} />
         </Route>
 
         {/* Playlist view - separate from home tabs */}
